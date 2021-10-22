@@ -12,7 +12,7 @@ class TransactionForm extends StatefulWidget {
 class _TransactionFormState extends State<TransactionForm> {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
-  var _selectedDate;
+  DateTime? _selectedDate;
 
   void _onSubmitted() {
     final title = titleController.text;
@@ -72,7 +72,7 @@ class _TransactionFormState extends State<TransactionForm> {
                   child: Text(
                     _selectedDate == null
                         ? 'No Date Chosen!'
-                        : 'PickedDate: ${DateFormat().add_yMd().format(_selectedDate)}',
+                        : 'PickedDate: ${DateFormat().add_yMd().format(_selectedDate!)}',
                   ),
                 ),
                 TextButton(

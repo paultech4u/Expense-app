@@ -7,29 +7,33 @@ class TransactionList extends StatelessWidget {
   final Function deleteTransaction;
   TransactionList(this.transactions, this.deleteTransaction);
 
+
+
   @override
   Widget build(BuildContext context) {
     return Container(
       height: 300,
       child: transactions.isEmpty
-          ? Column(
-              children: [
-                Text(
-                  'No Transaction added yet',
-                  style: Theme.of(context).textTheme.headline6,
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Container(
-                  height: 200,
-                  child: Image.asset(
-                    'assets/images/waiting.png',
-                    fit: BoxFit.cover,
+          ? LayoutBuilder(builder: (context, constraints) {
+              return Column(
+                children: [
+                  Text(
+                    'No Transaction added yet',
+                    style: Theme.of(context).textTheme.headline6,
                   ),
-                ),
-              ],
-            )
+                  SizedBox(
+                    height: 10,
+                  ),
+                  Container(
+                    height: constraints.maxHeight * 0.6,
+                    child: Image.asset(
+                      'assets/images/waiting.png',
+                      fit: BoxFit.cover,
+                    ),
+                  )
+                ],
+              );
+            })
           : ListView.builder(
               itemBuilder: (context, index) {
                 return Card(
